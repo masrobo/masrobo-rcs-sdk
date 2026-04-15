@@ -93,6 +93,7 @@ client.IotDevice.setting(
         humidity=HumiditySetting(max_value=80, min_value=20, calibration=0),
         data_recording_interval=5,
         reporting_interval=10,
+        alert_interval=15,
     )
 )
 ```

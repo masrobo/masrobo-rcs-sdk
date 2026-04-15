@@ -47,4 +47,5 @@ class DeviceSettingRequest:
     humidity: HumiditySetting
     data_recording_interval: int
     reporting_interval: int
+    alert_interval: int
 

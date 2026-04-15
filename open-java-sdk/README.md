@@ -73,7 +73,8 @@ client.getIotDevice().setting(
                 new TemperatureSetting(30, 10, 0),
                 new HumiditySetting(80, 20, 0),
                 5,
-                10
+                10,
+                15
         )
 );
 ```

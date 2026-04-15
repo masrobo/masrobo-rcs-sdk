@@ -101,6 +101,7 @@ err = client.IotDevice.Setting(ctx, boticzopen.DeviceSettingRequest{
 	},
 	DataRecordingInterval: 5,
 	ReportingInterval:     10,
+	AlertInterval:         15,
 })
 ```
 

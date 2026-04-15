@@ -18,13 +18,17 @@ public class DeviceSettingRequest {
     @JsonProperty("reporting_interval")
     private long reportingInterval;
 
+    @JsonProperty("alert_interval")
+    private long alertInterval;
+
     public DeviceSettingRequest(String deviceId, TemperatureSetting temperature, HumiditySetting humidity,
-                                long dataRecordingInterval, long reportingInterval) {
+                                long dataRecordingInterval, long reportingInterval, long alertInterval) {
         this.deviceId = deviceId;
         this.temperature = temperature;
         this.humidity = humidity;
         this.dataRecordingInterval = dataRecordingInterval;
         this.reportingInterval = reportingInterval;
+        this.alertInterval = alertInterval;
     }
 
     public String getDeviceId() {
@@ -45,6 +49,10 @@ public class DeviceSettingRequest {
 
     public long getReportingInterval() {
         return reportingInterval;
+    }
+
+    public long getAlertInterval() {
+        return alertInterval;
     }
 }
 

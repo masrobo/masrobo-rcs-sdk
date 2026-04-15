@@ -48,4 +48,5 @@ type DeviceSettingRequest struct {
 	Humidity              HumiditySetting    `json:"humidity" validate:"required"`
 	DataRecordingInterval int64              `json:"data_recording_interval" validate:"required"`
 	ReportingInterval     int64              `json:"reporting_interval" validate:"required"`
+	AlertInterval         int64              `json:"alert_interval" validate:"required"`
 }
