@@ -49,4 +49,5 @@ type DeviceSettingRequest struct {
 	DataRecordingInterval int64              `json:"data_recording_interval" validate:"required"`
 	ReportingInterval     int64              `json:"reporting_interval" validate:"required"`
 	AlertInterval         int64              `json:"alert_interval" validate:"required"`
+	AlertBattery          int64              `json:"alert_battery" binding:"required"`
 }

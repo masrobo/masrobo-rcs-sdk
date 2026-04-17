@@ -92,6 +92,7 @@ await client.IotDevice.setting({
   data_recording_interval: 5,
   reporting_interval: 10,
   alert_interval: 15,
+  alert_battery: 10,
 });
 ```
 

@@ -34,6 +34,7 @@ class IotDeviceService {
     requireValue(request.temperature, 'temperature');
     requireValue(request.humidity, 'humidity');
     requireValue(request.alert_interval, 'alert_interval');
+    requireValue(request.alert_battery, 'alert_battery');
     await this.client.request('POST', '/iot/device/setting', { body: request });
   }
 }
