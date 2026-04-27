@@ -17,13 +17,13 @@
 ## 安装
 
 ```bash
-pip3 install boticz_rcs_sdk
+pip3 install masrobo_rcs_sdk
 ```
 
 ## Quick Start
 
 ```python
-from boticz_rcs_sdk import RobotController, TopicDeviceData, GetLatestDeviceDataRequest
+from masrobo_rcs_sdk import RobotController, TopicDeviceData, GetLatestDeviceDataRequest
 
 client = RobotController(
     base_url="https://api.boticz.cn/open",

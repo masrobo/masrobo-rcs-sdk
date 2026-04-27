@@ -34,6 +34,7 @@ class Config:
     def generate_jwt_token(self) -> str:
         payload = {
             "app_id": self.normalized_app_id(),
+            "app_key": self.normalized_app_key(),
             "iat": int(time.time()),
             "exp": int(time.time()) + 3600  # 1 hour expiration
         }

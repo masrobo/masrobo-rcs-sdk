@@ -8,10 +8,11 @@ from .exceptions import APIError
 class Client:
     def __init__(self, config: Config):
         self.base_url = config.normalized_base_url()
-        self.token = config.normalized_token()
+        self.token = config.generate_jwt_token()
         self.session = config.normalized_session()
 
     def request(self, method: str, path: str, params=None, data=None):
+        print(f"request: {method} {self.base_url}/{path.lstrip('/')} {params} {data}")
         response = self.session.request(
             method=method,
             url=f"{self.base_url}/{path.lstrip('/')}",
