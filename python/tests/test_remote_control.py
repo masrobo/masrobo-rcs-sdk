@@ -22,7 +22,7 @@ def parse_args():
     parser.add_argument('--device-id', default='0b67403e575fed0b', help='Device ID')
     parser.add_argument('--product-name', default='AibbyPet', help='Product name')
     parser.add_argument('--command', default='move', help='Command to send')
-    parser.add_argument('--parameter', default='{"x": "0", "y": "1"}', help='Command parameter')
+    parser.add_argument('--parameter', default='{"x": 0, "y": 0}', help='Command parameter')
     parser.add_argument('--debug', action='store_true', help='Enable debug logging')
     return parser.parse_args()
 
