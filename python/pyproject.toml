@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "masrobo_rcs_sdk"        # 全局唯一，PyPI 检查冲突
+version = "0.1.0"
+description = "A Python SDK for Masrobo RCS OPEN API"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Holly Liu", email = "liuhong@neme.ai" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "requests>=2.25.0",
+    "PyJWT>=2.32.3",  
+]
+
+[project.urls]
+Homepage = "https://github.com/masrobo/masrobo-rcs-sdk"
