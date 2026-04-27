@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.boticz</groupId>
-    <artifactId>open-java-sdk</artifactId>
+    <artifactId>rcs-sdk</artifactId>
     <version>1.0.0</version>
-    <name>Open Java SDK</name>
+    <name>Boticz RCS SDK</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

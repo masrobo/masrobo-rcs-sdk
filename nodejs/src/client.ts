@@ -1,16 +1,21 @@
-const { createConfig } = require('./config');
-const { decodeSuccessData, createAPIError } = require('./base');
+import { ConfigOptions, createConfig } from './config';
+import { decodeSuccessData, createAPIError } from './base';
+import { AxiosInstance } from 'axios';
 
-class Client {
-  constructor(config = {}) {
+export class Client {
+  private baseURL: string;
+  private token: string;
+  private axios: AxiosInstance;
+
+  constructor(config: ConfigOptions) {
     const normalized = createConfig(config);
     this.baseURL = normalized.baseURL;
     this.token = normalized.token;
-    this.httpClient = normalized.httpClient;
+    this.axios = normalized.axios;
   }
 
-  async request(method, path, { query, body } = {}) {
-    const response = await this.httpClient.request({
+  async request(method: string, path: string, { query, body }: { query?: any; body?: any } = {}) {
+    const response = await this.axios.request({
       method,
       url: `${this.baseURL}/${String(path).replace(/^\/+/, '')}`,
       params: query,
@@ -30,5 +35,3 @@ class Client {
     return decodeSuccessData((response.data || {}).data);
   }
 }
-
-module.exports = { Client };

@@ -1,4 +1,4 @@
-function requireValue(value, name) {
+export function requireValue(value: any, name: string): void {
   if (value == null) {
     throw new Error(`${name} is required`);
   }
@@ -6,6 +6,3 @@ function requireValue(value, name) {
     throw new Error(`${name} is required`);
   }
 }
-
-module.exports = { requireValue };
-

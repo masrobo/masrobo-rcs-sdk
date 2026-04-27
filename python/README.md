@@ -12,20 +12,20 @@
   - Bind device
   - Update device settings
 
-## Install
+# 如何使用
+
+## 安装
 
 ```bash
-pip install -r requirements.txt
+pip3 install boticz_rcs_sdk
 ```
-
-This package is compatible with Python 3.8+.
 
 ## Quick Start
 
 ```python
-from boticz_open import OpenClient, TopicDeviceData, GetLatestDeviceDataRequest
+from boticz_rcs_sdk import RobotController, TopicDeviceData, GetLatestDeviceDataRequest
 
-client = OpenClient(
+client = RobotController(
     base_url="https://api.boticz.cn/open",
     token="your-x-token",
 )

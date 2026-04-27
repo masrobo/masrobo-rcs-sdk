@@ -19,13 +19,13 @@ Run `npm install` in this SDK directory.
 ## Quick Start
 
 ```js
-const {
-  OpenClient,
+import {
+  RobotController,
   TopicDeviceData,
-} = require('./index');
+} from 'boticz-rcs-sdk';
 
 async function main() {
-  const client = new OpenClient({
+  const client = new RobotController({
     baseURL: 'https://api.boticz.cn/open',
     token: 'your-x-token',
   });

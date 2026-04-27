@@ -1,5 +1,5 @@
 from .exceptions import APIError
-from .open_client import OpenClient
+from .robot_controller import RobotController
 from .request import (
     BindDeviceRequest,
     DeviceSettingRequest,
@@ -14,7 +14,7 @@ from .request import (
 from .response import GetLatestDeviceDataResponse, LatestDeviceDataRecord
 
 __all__ = [
-    "OpenClient",
+    "RobotController",
     "APIError",
     "TopicDeviceData",
     "TopicScreenshot",
