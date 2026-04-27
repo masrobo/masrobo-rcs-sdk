@@ -30,3 +30,11 @@ publish-nodejs:
     # 在这里添加发布 Node.js SDK 的命令，例如使用 npm 或 yarn 发布到 npmjs.org
   only:
     - master
+
+notice:
+  stage: notice
+  script:
+    - chmod +x scripts/notice.sh
+    - ./scripts/notice.sh
+  only:
+    - master
