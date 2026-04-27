@@ -4,7 +4,7 @@
 
 ## Features
 
-- `X-Token` authentication
+- `X-Token` authentication using JWT tokens generated from appId and appKey
 - Unified HTTP client and error handling
 - IoT device APIs
   - Get latest device data
@@ -22,12 +22,14 @@ Run `npm install` in this SDK directory.
 import {
   RobotController,
   TopicDeviceData,
-} from 'boticz-rcs-sdk';
+} from 'masrobo-rcs-sdk';
 
 async function main() {
+```js
   const client = new RobotController({
     baseURL: 'https://api.boticz.cn/open',
-    token: 'your-x-token',
+    appId: 'your-app-id',
+    appKey: 'your-app-key',
   });
 
   const resp = await client.IotDevice.getLatestDeviceData({
@@ -79,20 +81,14 @@ await client.IotDevice.bindDevice({
 ```js
 await client.IotDevice.setting({
   device_id: 'device001',
-  temperature: {
-    max_value: 30,
-    min_value: 10,
-    calibration: 0,
-  },
-  humidity: {
-    max_value: 80,
-    min_value: 20,
-    calibration: 0,
-  },
-  data_recording_interval: 5,
-  reporting_interval: 10,
-  alert_interval: 15,
-  alert_battery: 10,
+  settings: JSON.stringify({
+    "temperature":{"max_value":30,"min_value":10,"calibration":0},
+    "humidity":{"max_value":80,"min_value":20,"calibration":0},
+    "data_recording_interval":5,
+    "reporting_interval":10,
+    "alert_interval":15,
+    "alert_battery":10
+  })
 });
 ```
 

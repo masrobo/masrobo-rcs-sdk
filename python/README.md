@@ -4,7 +4,7 @@
 
 ## Features
 
-- `X-Token` authentication
+- `X-Token` authentication using JWT tokens generated from app_id and app_key using JWT tokens generated from app_id and app_key
 - Unified HTTP client and error handling
 - IoT device APIs
   - Get latest device data
@@ -27,7 +27,8 @@ from boticz_rcs_sdk import RobotController, TopicDeviceData, GetLatestDeviceData
 
 client = RobotController(
     base_url="https://api.boticz.cn/open",
-    token="your-x-token",
+    app_id="your-app-id",
+    app_key="your-app-key",
 )
 
 resp = client.IotDevice.get_latest_device_data(
@@ -46,7 +47,7 @@ print(resp)
 ### Get latest device data
 
 ```python
-from boticz_open import TopicScreenshot, GetLatestDeviceDataRequest
+from masrobo_rcs_sdk import TopicScreenshot, GetLatestDeviceDataRequest
 
 client.IotDevice.get_latest_device_data(
     GetLatestDeviceDataRequest(
@@ -60,7 +61,7 @@ client.IotDevice.get_latest_device_data(
 ### Send device command
 
 ```python
-from boticz_open import TopicRemoteControl, SendDeviceCommandRequest
+from masrobo_rcs_sdk import TopicRemoteControl, SendDeviceCommandRequest
 
 client.IotDevice.send_device_command(
     SendDeviceCommandRequest(
@@ -76,7 +77,7 @@ client.IotDevice.send_device_command(
 ### Bind device
 
 ```python
-from boticz_open import BindDeviceRequest
+from masrobo_rcs_sdk import BindDeviceRequest
 
 client.IotDevice.bind_device(BindDeviceRequest(device_id="device001"))
 ```
@@ -84,17 +85,12 @@ client.IotDevice.bind_device(BindDeviceRequest(device_id="device001"))
 ### Update device settings
 
 ```python
-from boticz_open import DeviceSettingRequest, TemperatureSetting, HumiditySetting
+from masrobo_rcs_sdk import DeviceSettingRequest
 
 client.IotDevice.setting(
     DeviceSettingRequest(
         device_id="device001",
-        temperature=TemperatureSetting(max_value=30, min_value=10, calibration=0),
-        humidity=HumiditySetting(max_value=80, min_value=20, calibration=0),
-        data_recording_interval=5,
-        reporting_interval=10,
-        alert_interval=15,
-        alert_battery=10,
+        settings='{"temperature":{"max_value":30,"min_value":10,"calibration":0},"humidity":{"max_value":80,"min_value":20,"calibration":0},"data_recording_interval":5,"reporting_interval":10,"alert_interval":15,"alert_battery":10}',
     )
 )
 ```
@@ -102,7 +98,7 @@ client.IotDevice.setting(
 ## Error Handling
 
 ```python
-from boticz_open import APIError
+from masrobo_rcs_sdk import APIError
 
 try:
     client.IotDevice.get_latest_device_data(

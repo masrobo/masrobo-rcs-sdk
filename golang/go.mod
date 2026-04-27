@@ -1,8 +1,11 @@
-module github.com/boticz/open-go-sdk
+module github.com/boticz/masrobo-rcs-sdk
 
 go 1.24.0
 
-require github.com/go-playground/validator/v10 v10.28.0
+require (
+	github.com/go-playground/validator/v10 v10.28.0
+	github.com/golang-jwt/jwt/v5 v5.2.1
+)
 
 require (
 	github.com/gabriel-vasile/mimetype v1.4.10 // indirect

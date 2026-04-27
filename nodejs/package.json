@@ -1,5 +1,5 @@
 {
-  "name": "boticz-rcs-sdk",
+  "name": "masrobo-rcs-sdk",
   "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -16,13 +16,16 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite dev",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "axios": "^1.8.4"
+    "axios": "^1.8.4",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
+    "@types/jsonwebtoken": "^9.0.6",
     "typescript": "^5.4.5",
     "vite": "^5.3.1",
     "vite-plugin-dts": "^3.9.1"

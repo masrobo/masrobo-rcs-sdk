@@ -4,17 +4,18 @@ import { AxiosInstance } from 'axios';
 
 export class Client {
   private baseURL: string;
-  private token: string;
+  private config: ReturnType<typeof createConfig>;
   private axios: AxiosInstance;
 
   constructor(config: ConfigOptions) {
     const normalized = createConfig(config);
     this.baseURL = normalized.baseURL;
-    this.token = normalized.token;
+    this.config = normalized;
     this.axios = normalized.axios;
   }
 
   async request(method: string, path: string, { query, body }: { query?: any; body?: any } = {}) {
+    const token = this.config.generateJwtToken();
     const response = await this.axios.request({
       method,
       url: `${this.baseURL}/${String(path).replace(/^\/+/, '')}`,
@@ -22,7 +23,7 @@ export class Client {
       data: body,
       headers: {
         Accept: 'application/json',
-        'X-Token': this.token,
+        'X-Token': token,
         ...(body ? { 'Content-Type': 'application/json' } : {}),
       },
       validateStatus: () => true,

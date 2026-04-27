@@ -29,10 +29,7 @@ export class IotDeviceService {
 
   async setting(request: any = {}) {
     requireValue(request.device_id, 'device_id');
-    requireValue(request.temperature, 'temperature');
-    requireValue(request.humidity, 'humidity');
-    requireValue(request.alert_interval, 'alert_interval');
-    requireValue(request.alert_battery, 'alert_battery');
+    requireValue(request.settings, 'settings');
     await this.client.request('POST', '/iot/device/setting', { body: request });
   }
 }
