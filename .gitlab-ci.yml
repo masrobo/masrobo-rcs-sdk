@@ -5,11 +5,11 @@ stages:
 publish-python:
   stage: publish
   before_script:
-    - pip install build twine
+    - pip3 install build twine
   script:
-    - pip install -r requirements.txt
-    - python -m build --version
-    - python -m build python/
+    - pip3 install -r requirements.txt
+    - python3 -m build --version
+    - python3 -m build python/
     - twine check python/dist/*
     - twine upload python/dist/* -u $PYPI_USERNAME -p $PYPI_PASSWORD
   only:
