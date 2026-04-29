@@ -1,6 +1,6 @@
-# Open NodeJS SDK
+# Masrobo RCS NodeJS SDK
 
-`Open NodeJS SDK` is a lightweight Node.js client for the Boticz Open API.
+`Masrobo RCS NodeJS SDK` is a lightweight Node.js client for the Masrobo RCS API.
 
 ## Features
 
