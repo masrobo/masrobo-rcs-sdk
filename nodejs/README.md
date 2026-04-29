@@ -25,7 +25,6 @@ import {
 } from 'masrobo-rcs-sdk';
 
 async function main() {
-```js
   const client = new RobotController({
     baseURL: 'https://api.boticz.cn/open',
     appId: 'your-app-id',
