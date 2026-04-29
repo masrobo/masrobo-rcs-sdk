@@ -1,4 +1,4 @@
-package com.boticz.masrobo.error;
+package cn.boticz.masrobo.error;
 
 public class ApiException extends RuntimeException {
     private final int statusCode;

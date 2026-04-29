@@ -1,6 +1,6 @@
-# Open Java SDK
+# Masrobo RCS SDK
 
-`Open Java SDK` is a lightweight Java client for the Boticz Open API.
+`Masrobo RCS SDK` is a lightweight Java client for the Masrobo RCS API.
 
 ## Features
 
@@ -19,10 +19,10 @@ Add dependency in your Maven project after publishing, or copy this module into 
 ## Quick Start
 
 ```java
-import com.boticz.masrobo.client.Config;
-import com.boticz.masrobo.RobotController;
-import com.boticz.masrobo.request.GetLatestDeviceDataRequest;
-import com.boticz.masrobo.request.Topics;
+import cn.boticz.masrobo.client.Config;
+import cn.boticz.masrobo.RobotController;
+import cn.boticz.masrobo.request.GetLatestDeviceDataRequest;
+import cn.boticz.masrobo.request.Topics;
 
 public class Main {
     public static void main(String[] args) {

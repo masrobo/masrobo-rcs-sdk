@@ -1,4 +1,4 @@
-package com.boticz.masrobo.request;
+package cn.boticz.masrobo.request;
 
 public final class Topics {
     public static final String DEVICE_DATA = "device_data";

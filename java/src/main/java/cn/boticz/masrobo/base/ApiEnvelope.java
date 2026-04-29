@@ -1,4 +1,4 @@
-package com.boticz.masrobo.base;
+package cn.boticz.masrobo.base;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

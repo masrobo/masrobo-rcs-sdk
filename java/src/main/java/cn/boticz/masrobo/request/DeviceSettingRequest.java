@@ -1,4 +1,4 @@
-package com.boticz.masrobo.request;
+package cn.boticz.masrobo.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 

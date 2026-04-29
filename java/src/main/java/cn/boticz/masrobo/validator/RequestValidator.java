@@ -1,4 +1,4 @@
-package com.boticz.masrobo.validator;
+package cn.boticz.masrobo.validator;
 
 public final class RequestValidator {
     private RequestValidator() {}

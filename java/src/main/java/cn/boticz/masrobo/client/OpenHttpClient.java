@@ -1,8 +1,8 @@
-package com.boticz.masrobo.client;
+package cn.boticz.masrobo.client;
 
-import com.boticz.masrobo.base.ApiConstants;
-import com.boticz.masrobo.base.ApiEnvelope;
-import com.boticz.masrobo.error.ApiException;
+import cn.boticz.masrobo.base.ApiConstants;
+import cn.boticz.masrobo.base.ApiEnvelope;
+import cn.boticz.masrobo.error.ApiException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;

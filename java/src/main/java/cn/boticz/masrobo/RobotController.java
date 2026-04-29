@@ -1,8 +1,8 @@
-package com.boticz.masrobo;
+package cn.boticz.masrobo;
 
-import com.boticz.masrobo.service.IotDeviceService;
-import com.boticz.masrobo.client.Config;
-import com.boticz.masrobo.client.OpenHttpClient;
+import cn.boticz.masrobo.service.IotDeviceService;
+import cn.boticz.masrobo.client.Config;
+import cn.boticz.masrobo.client.OpenHttpClient;
 
 
 public class RobotController {

@@ -1,12 +1,12 @@
-package com.boticz.masrobo.service;
+package cn.boticz.masrobo.service;
 
-import com.boticz.masrobo.client.OpenHttpClient;
-import com.boticz.masrobo.request.BindDeviceRequest;
-import com.boticz.masrobo.request.DeviceSettingRequest;
-import com.boticz.masrobo.request.GetLatestDeviceDataRequest;
-import com.boticz.masrobo.request.SendDeviceCommandRequest;
-import com.boticz.masrobo.response.GetLatestDeviceDataResponse;
-import com.boticz.masrobo.validator.RequestValidator;
+import cn.boticz.masrobo.client.OpenHttpClient;
+import cn.boticz.masrobo.request.BindDeviceRequest;
+import cn.boticz.masrobo.request.DeviceSettingRequest;
+import cn.boticz.masrobo.request.GetLatestDeviceDataRequest;
+import cn.boticz.masrobo.request.SendDeviceCommandRequest;
+import cn.boticz.masrobo.response.GetLatestDeviceDataResponse;
+import cn.boticz.masrobo.validator.RequestValidator;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.boticz.masrobo.client;
+package cn.boticz.masrobo.client;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

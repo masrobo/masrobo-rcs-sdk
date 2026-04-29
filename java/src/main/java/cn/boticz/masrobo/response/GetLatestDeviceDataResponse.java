@@ -1,8 +1,8 @@
-package com.boticz.masrobo.request;
+package cn.boticz.masrobo.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class GetLatestDeviceDataRequest {
+public class GetLatestDeviceDataResponse {
     @JsonProperty("product_name")
     private String productName;
 
@@ -12,11 +12,8 @@ public class GetLatestDeviceDataRequest {
     @JsonProperty("topic_name")
     private String topicName;
 
-    public GetLatestDeviceDataRequest(String productName, String deviceId, String topicName) {
-        this.productName = productName;
-        this.deviceId = deviceId;
-        this.topicName = topicName;
-    }
+    @JsonProperty("record")
+    private LatestDeviceDataRecord record;
 
     public String getProductName() {
         return productName;
@@ -28,6 +25,10 @@ public class GetLatestDeviceDataRequest {
 
     public String getTopicName() {
         return topicName;
+    }
+
+    public LatestDeviceDataRecord getRecord() {
+        return record;
     }
 }
 
