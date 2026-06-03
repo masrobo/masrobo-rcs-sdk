@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "masrobo_rcs_sdk"        # 全局唯一，PyPI 检查冲突
-version = "0.1.0"
+version = "0.2.0"
 description = "A Python SDK for Masrobo RCS OPEN API"
 readme = "README.md"
 license = { text = "MIT" }
