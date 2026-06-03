@@ -18,16 +18,17 @@ publish-python:
 publish-java:
   stage: publish
   script:
-    - echo "Publishing Java SDK..."
-    # 在这里添加发布 Java SDK 的命令，例如使用 Gradle 或 Maven 发布到 Maven Central
+    - cd java/
+    - mvn clean deploy -DskipTests -s settings.xml
   only:
     - master
 
 publish-nodejs:
   stage: publish
   script:
-    - echo "Publishing Node.js SDK..."
-    # 在这里添加发布 Node.js SDK 的命令，例如使用 npm 或 yarn 发布到 npmjs.org
+    - cd nodejs/
+    - npm run build
+    - npm publish
   only:
     - master
 
