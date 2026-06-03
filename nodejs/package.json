@@ -1,6 +1,6 @@
 {
   "name": "masrobo-rcs-sdk",
-"version": "0.2.0",
+  "version": "0.2.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -17,6 +17,7 @@
     "build": "vite build",
     "dev": "vite dev",
     "preview": "vite preview",
+    "test": "vitest run",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
@@ -24,10 +25,11 @@
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
-    "@types/node": "^20.14.2",
     "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20.14.2",
     "typescript": "^5.4.5",
     "vite": "^5.3.1",
-    "vite-plugin-dts": "^3.9.1"
+    "vite-plugin-dts": "^3.9.1",
+    "vitest": "^4.1.8"
   }
 }
