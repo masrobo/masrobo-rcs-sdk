@@ -43,7 +43,7 @@ export function createConfig(config: ConfigOptions): Config {
         iat: Math.floor(Date.now() / 1000),
         exp: Math.floor(Date.now() / 1000) + 3600, // 1 hour expiration
       };
-      return jwt.sign(payload, '', { algorithm: 'HS256' });
+      return jwt.sign(payload, normalizedAppKey, { algorithm: 'HS256' });
     },
   };
 }

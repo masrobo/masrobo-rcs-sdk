@@ -13,6 +13,8 @@ class Client:
 
     def request(self, method: str, path: str, params=None, data=None):
         print(f"request: {method} {self.base_url}/{path.lstrip('/')} {params} {data}")
+        # 打印Headers
+        print(f"headers: {{\"Accept\":\"application/json\",\"X-Token\":\"{self.token}\"}}")
         response = self.session.request(
             method=method,
             url=f"{self.base_url}/{path.lstrip('/')}",

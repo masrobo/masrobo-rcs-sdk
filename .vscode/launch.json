@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: test_device_info",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "python/tests/test_device_info.py",
+        "-v"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Java: mvn test (get_device_info)",
+      "type": "shell",
+      "request": "launch",
+      "command": "mvn test -Dsurefire.useFile=false",
+      "cwd": "${workspaceFolder}/java",
+      "env": {
+        "JAVA_HOME": "D:\\Program Files\\Eclipse Adoptium\\jdk-21.0.11.10-hotspot"
+      },
+      "console": "integratedTerminal"
+    }
+  ]
+}

@@ -50,8 +50,8 @@ public class Config {
         Date expiration = new Date(now + 3600000); // 1 hour expiration
 
         return Jwts.builder()
-                .setSubject(appId)
                 .claim("app_id", appId)
+                .claim("app_key", appKey)
                 .setIssuedAt(issuedAt)
                 .setExpiration(expiration)
                 .signWith(SignatureAlgorithm.HS256, appKey.getBytes())

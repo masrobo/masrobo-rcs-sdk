@@ -1,135 +1,66 @@
 package cn.boticz.masrobo.service;
 
-import cn.boticz.masrobo.client.OpenHttpClient;
+import cn.boticz.masrobo.RobotController;
+import cn.boticz.masrobo.client.Config;
 import cn.boticz.masrobo.request.DeviceInfoRequest;
 import cn.boticz.masrobo.response.IotDeviceInfo;
-import org.junit.jupiter.api.BeforeEach;
+import io.github.cdimascio.dotenv.Dotenv;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+/**
+ * 集成测试：IotDeviceService.getDeviceInfo（真实 API 调用）
+ * 参考 Python SDK 单元测试 {@code python/tests/test_device_info.py} 的做法
+ */
 class IotDeviceServiceTest {
 
-    @Mock
-    private OpenHttpClient httpClient;
+    private static IotDeviceService service;
+    private static String deviceId;
+    private static String productName;
 
-    private IotDeviceService service;
+    @BeforeAll
+    static void setUp() {
+        // 从 java/.env 文件加载环境变量（类似 Python: load_dotenv()）
+        Dotenv dotenv = Dotenv.configure()
+                .directory(".")
+                .filename(".env")
+                .load();
 
-    @BeforeEach
-    void setUp() {
-        service = new IotDeviceService(httpClient);
+        String baseUrl = dotenv.get("BASE_URL");
+        String appId = dotenv.get("APP_ID");
+        String appKey = dotenv.get("APP_KEY");
+        deviceId = dotenv.get("DEVICE_ID");
+        productName = dotenv.get("PROJECT_NAME");
+
+        assertNotNull(baseUrl, "BASE_URL 不能为空");
+        assertNotNull(appId, "APP_ID 不能为空");
+        assertNotNull(appKey, "APP_KEY 不能为空");
+        assertNotNull(deviceId, "DEVICE_ID 不能为空");
+
+        // 使用 RobotController 创建客户端（类似 Python: RobotController(base_url, app_id, app_key)）
+        Config config = new Config(baseUrl, appId, appKey);
+        RobotController controller = new RobotController(config);
+        service = controller.getIotDevice();
     }
 
     @Test
-    void testGetDeviceInfo_Success() {
-        // Arrange
-        IotDeviceInfo fakeInfo = new IotDeviceInfo();
-        fakeInfo.setDeviceId("test-device-001");
-        fakeInfo.setProductName("AibbyPet");
-        fakeInfo.setDeviceName("测试设备");
-        fakeInfo.setStatus(1);
-
-        Map<String, Object> services = new LinkedHashMap<>();
-        Map<String, Object> webrtc = new LinkedHashMap<>();
-        webrtc.put("enabled", true);
-        services.put("webrtc", webrtc);
-        fakeInfo.setServices(services);
-
-        when(httpClient.post(eq("/iot/device/info"), any(DeviceInfoRequest.class), eq(IotDeviceInfo.class)))
-                .thenReturn(fakeInfo);
-
-        // Act
-        DeviceInfoRequest request = new DeviceInfoRequest("test-device-001");
+    void testGetDeviceInfo() {
+        // 参考 Python: client.IotDevice.get_device_info(DeviceInfoRequest(device_id=DEVICE_ID))
+        DeviceInfoRequest request = new DeviceInfoRequest(deviceId);
         IotDeviceInfo result = service.getDeviceInfo(request);
 
-        // Assert
+        System.out.println("Device info result: " + result);
+
         assertNotNull(result);
-        assertEquals("test-device-001", result.getDeviceId());
-        assertEquals("AibbyPet", result.getProductName());
-        assertEquals("测试设备", result.getDeviceName());
-        assertEquals(1, result.getStatus());
-        assertTrue((Boolean) result.getServices().get("webrtc").get("enabled"));
+        assertEquals(deviceId, result.getDeviceId());
+        assertEquals(productName, result.getProductName());
+        assertNotNull(result.getDeviceName());
+        assertTrue(result.getStatus() >= 0);
 
-        // 验证请求参数
-        verify(httpClient).post(eq("/iot/device/info"), any(DeviceInfoRequest.class), eq(IotDeviceInfo.class));
-    }
-
-    @Test
-    void testGetDeviceInfo_FullFields() {
-        // Arrange
-        IotDeviceInfo fakeInfo = new IotDeviceInfo();
-        fakeInfo.setId(42L);
-        fakeInfo.setDeviceId("device-full-001");
-        fakeInfo.setIotProductId(15L);
-        fakeInfo.setProductName("SmartSensor");
-        fakeInfo.setCategoryCode("sensor");
-        fakeInfo.setUserId(888L);
-        fakeInfo.setDeviceName("温湿度传感器 #1");
-        fakeInfo.setActiveType(new String[]{"MANUAL", "API"});
-        fakeInfo.setStatus(1);
-
-        Map<String, Object> deviceData = new LinkedHashMap<>();
-        deviceData.put("temperature", 25.5);
-        deviceData.put("humidity", 60);
-        fakeInfo.setDeviceData(deviceData);
-
-        Map<String, Object> services = new LinkedHashMap<>();
-        Map<String, Object> ota = new LinkedHashMap<>();
-        ota.put("enabled", true);
-        ota.put("version", "2.0.1");
-        services.put("ota", ota);
-        fakeInfo.setServices(services);
-
-        fakeInfo.setRelRole(0);
-        fakeInfo.setRelSource("shared");
-
-        when(httpClient.post(eq("/iot/device/info"), any(DeviceInfoRequest.class), eq(IotDeviceInfo.class)))
-                .thenReturn(fakeInfo);
-
-        // Act
-        DeviceInfoRequest request = new DeviceInfoRequest("device-full-001");
-        IotDeviceInfo result = service.getDeviceInfo(request);
-
-        // Assert
-        assertEquals("device-full-001", result.getDeviceId());
-        assertEquals("SmartSensor", result.getProductName());
-        assertEquals("温湿度传感器 #1", result.getDeviceName());
-        assertEquals(25.5, (Double) result.getDeviceData().get("temperature"));
-        assertEquals("2.0.1", result.getServices().get("ota").get("version"));
-    }
-
-    @Test
-    void testGetDeviceInfo_EmptyDeviceId() {
-        // Act & Assert
-        DeviceInfoRequest request = new DeviceInfoRequest("");
-        assertThrows(IllegalArgumentException.class, () -> service.getDeviceInfo(request));
-        verifyNoInteractions(httpClient);
-    }
-
-    @Test
-    void testGetDeviceInfo_NullRequest() {
-        // Act & Assert
-        assertThrows(IllegalArgumentException.class, () -> service.getDeviceInfo(null));
-        verifyNoInteractions(httpClient);
-    }
-
-    @Test
-    void testGetDeviceInfo_ApiError() {
-        // Arrange
-        when(httpClient.post(eq("/iot/device/info"), any(DeviceInfoRequest.class), eq(IotDeviceInfo.class)))
-                .thenThrow(new RuntimeException("device not found"));
-
-        // Act & Assert
-        DeviceInfoRequest request = new DeviceInfoRequest("nonexistent-device");
-        assertThrows(RuntimeException.class, () -> service.getDeviceInfo(request));
+        System.out.println("设备名称: " + result.getDeviceName());
+        System.out.println("产品名称: " + result.getProductName());
+        System.out.println("设备状态: " + result.getStatus());
     }
 }

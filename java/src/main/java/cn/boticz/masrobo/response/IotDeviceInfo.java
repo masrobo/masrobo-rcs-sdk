@@ -3,7 +3,7 @@ package cn.boticz.masrobo.response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Map;
 
 @Data
@@ -36,10 +36,10 @@ public class IotDeviceInfo {
     private Integer status;
 
     @JsonProperty("active_time")
-    private LocalDateTime activeTime;
+    private OffsetDateTime activeTime;
 
     @JsonProperty("deactive_time")
-    private LocalDateTime deactiveTime;
+    private OffsetDateTime deactiveTime;
 
     @JsonProperty("application_id")
     private Long applicationId;
@@ -63,13 +63,13 @@ public class IotDeviceInfo {
     private Map<String, Object> deviceData;
 
     @JsonProperty("device_data_time")
-    private LocalDateTime deviceDataTime;
+    private OffsetDateTime deviceDataTime;
 
     @JsonProperty("screenshot")
     private String screenshot;
 
     @JsonProperty("screenshot_time")
-    private LocalDateTime screenshotTime;
+    private OffsetDateTime screenshotTime;
 
     @JsonProperty("services")
     private Map<String, Map<String, Object>> services;
