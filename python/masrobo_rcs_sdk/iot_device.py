@@ -42,6 +42,10 @@ class IotDeviceService:
         require_value(request.humidity, "humidity")
         self._client.request("POST", "/iot/device/setting", data=asdict(request))
 
+    def get_device_info(self, request):
+        require_value(request.device_id, "device_id")
+        return self._client.request("POST", "/iot/device/info", data=asdict(request))
+
     @staticmethod
     def _parse_latest_response(data):
         if data is None:

@@ -1,7 +1,7 @@
 package cn.boticz.masrobo.client;
 
 import cn.boticz.masrobo.base.ApiConstants;
-import cn.boticz.masrobo.base.ApiEnvelope;
+import cn.boticz.masrobo.base.BaseResponse;
 import cn.boticz.masrobo.error.ApiException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -38,6 +38,10 @@ public class OpenHttpClient {
         execute("POST", path, null, body, Void.class);
     }
 
+    public <T> T post(String path, Object body, Class<T> responseType) {
+        return execute("POST", path, null, body, responseType);
+    }
+
     private <T> T execute(String method, String path, Map<String, Object> query, Object body, Class<T> responseType) {
         try {
             String token = config.generateJwtToken();
@@ -63,7 +67,7 @@ public class OpenHttpClient {
                 return null;
             }
 
-            ApiEnvelope<?> envelope = objectMapper.readValue(rawBody, envelopeType());
+            BaseResponse<?> envelope = objectMapper.readValue(rawBody, responseType());
             if (response.statusCode() >= 400 || envelope.getCode() != ApiConstants.SUCCESS_CODE) {
                 throw new ApiException(response.statusCode(), envelope.getCode(), envelope.getMsg(), rawBody);
             }
@@ -111,7 +115,7 @@ public class OpenHttpClient {
         return URLEncoder.encode(value, StandardCharsets.UTF_8);
     }
 
-    private TypeReference<ApiEnvelope<Object>> envelopeType() {
-        return new TypeReference<ApiEnvelope<Object>>() {};
+    private TypeReference<BaseResponse<Object>> responseType() {
+        return new TypeReference<BaseResponse<Object>>() {};
     }
 }

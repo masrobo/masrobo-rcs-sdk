@@ -1,8 +1,10 @@
 package cn.boticz.masrobo.base;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
-public class ApiEnvelope<T> {
+@Data
+public class BaseResponse<T> {
     @JsonProperty("code")
     private int code;
 
@@ -11,17 +13,4 @@ public class ApiEnvelope<T> {
 
     @JsonProperty("data")
     private T data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public T getData() {
-        return data;
-    }
 }
-

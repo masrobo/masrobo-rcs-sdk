@@ -27,6 +27,11 @@ class BindDeviceRequest:
 
 
 @dataclass
+class DeviceInfoRequest:
+    device_id: str
+
+
+@dataclass
 class TemperatureSetting:
     max_value: float
     min_value: float

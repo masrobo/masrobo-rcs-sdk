@@ -2,10 +2,12 @@ package cn.boticz.masrobo.service;
 
 import cn.boticz.masrobo.client.OpenHttpClient;
 import cn.boticz.masrobo.request.BindDeviceRequest;
+import cn.boticz.masrobo.request.DeviceInfoRequest;
 import cn.boticz.masrobo.request.DeviceSettingRequest;
 import cn.boticz.masrobo.request.GetLatestDeviceDataRequest;
 import cn.boticz.masrobo.request.SendDeviceCommandRequest;
 import cn.boticz.masrobo.response.GetLatestDeviceDataResponse;
+import cn.boticz.masrobo.response.IotDeviceInfo;
 import cn.boticz.masrobo.validator.RequestValidator;
 
 import java.util.LinkedHashMap;
@@ -52,5 +54,11 @@ public class IotDeviceService {
         RequestValidator.require(request.getDeviceId(), "deviceId");
         RequestValidator.require(request.getSettings(), "settings");
         httpClient.post("/iot/device/setting", request);
+    }
+
+    public IotDeviceInfo getDeviceInfo(DeviceInfoRequest request) {
+        RequestValidator.require(request, "request");
+        RequestValidator.require(request.getDeviceId(), "deviceId");
+        return httpClient.post("/iot/device/info", request, IotDeviceInfo.class);
     }
 }

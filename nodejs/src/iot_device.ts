@@ -32,4 +32,9 @@ export class IotDeviceService {
     requireValue(request.settings, 'settings');
     await this.client.request('POST', '/iot/device/setting', { body: request });
   }
+
+  async getDeviceInfo(request: any = {}) {
+    requireValue(request.device_id, 'device_id');
+    return await this.client.request('POST', '/iot/device/info', { body: request });
+  }
 }
