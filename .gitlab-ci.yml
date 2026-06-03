@@ -28,7 +28,7 @@ publish-nodejs:
   script:
     - cd nodejs/
     - npm run build
-    - npm publish
+    - npm publish --registry https://registry.npmjs.org
   only:
     - master
 
