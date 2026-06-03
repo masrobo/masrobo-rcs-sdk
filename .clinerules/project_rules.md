@@ -18,3 +18,8 @@ GO语言SDK在另外一个项目中，项目地址为：https://github.com/masro
 - 发布Node.js SDK
 - 发布Java SDK
 - 发布GO语言SDK（rcs-golang-sdk）
+5. 不要使用CI/CD工具发布SDK，而要手动发布
+
+# java
+
+1. settings.xml 路径在 D:\.m2\settings.xml
