@@ -11,6 +11,11 @@ class LatestDeviceDataRecord:
 
 
 @dataclass
+class DeviceQRCodeInfo:
+    qrcode_url: str
+
+
+@dataclass
 class GetLatestDeviceDataResponse:
     product_name: str
     device_id: str

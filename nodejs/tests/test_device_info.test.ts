@@ -36,4 +36,13 @@ describe('TestGetDeviceInfo', () => {
     console.log(`产品名称: ${result.product_name}`);
     console.log(`设备状态: ${result.status}`);
   });
+
+  it('test_add_device', async () => {
+    const { controller, deviceId, productName } = createService();
+
+    const result = await controller.IotDevice.addDevice({ project_name: productName, device_id: deviceId });
+    expect(result).not.toBeNull();
+    expect(result.qrcode_url).toBeDefined();
+    console.log(`addDevice 调用成功: qrcode_url=${result.qrcode_url}`);
+  });
 });

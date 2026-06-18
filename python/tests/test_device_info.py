@@ -1,4 +1,4 @@
-"""集成测试：IotDeviceService.get_device_info（真实 API 调用）"""
+"""集成测试：IotDeviceService.get_device_info / add_device（真实 API 调用）"""
 import os
 import sys
 import logging
@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from masrobo_rcs_sdk import RobotController
-from masrobo_rcs_sdk.request import DeviceInfoRequest
+from masrobo_rcs_sdk.request import AddDeviceRequest, DeviceInfoRequest
 
 # 配置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -54,6 +54,18 @@ class TestGetDeviceInfo:
         logger.info(f"设备名称: {result.get('device_name')}")
         logger.info(f"产品名称: {result.get('product_name')}")
         logger.info(f"设备状态: {result.get('status')}")
+
+    def test_add_device(self):
+        """添加设备，验证返回二维码信息"""
+        client = self._create_service()
+        request = AddDeviceRequest(
+            project_name=PRODUCT_NAME,
+            device_id=DEVICE_ID,
+        )
+        result = client.IotDevice.add_device(request)
+        assert result is not None
+        assert result.qrcode_url is not None
+        logger.info(f"add_device 调用成功: qrcode_url={result.qrcode_url}")
 
 
 if __name__ == "__main__":

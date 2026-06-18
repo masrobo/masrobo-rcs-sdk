@@ -1,7 +1,7 @@
 from dataclasses import asdict
 
 from .client import Client
-from .response import GetLatestDeviceDataResponse, LatestDeviceDataRecord
+from .response import DeviceQRCodeInfo, GetLatestDeviceDataResponse, LatestDeviceDataRecord
 from .validator import require_value
 
 
@@ -31,6 +31,12 @@ class IotDeviceService:
         require_value(request.product_name, "product_name")
         require_value(request.topic_name, "topic_name")
         self._client.request("POST", "/iot/device/command", data=asdict(request))
+
+    def add_device(self, request):
+        require_value(request.project_name, "project_name")
+        require_value(request.device_id, "device_id")
+        data = self._client.request("POST", "/iot/device/add", data=asdict(request))
+        return DeviceQRCodeInfo(qrcode_url=data.get("qrcode_url"))
 
     def bind_device(self, request):
         require_value(request.device_id, "device_id")

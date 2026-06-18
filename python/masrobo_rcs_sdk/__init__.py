@@ -1,6 +1,7 @@
 from .exceptions import APIError
 from .robot_controller import RobotController
 from .request import (
+    AddDeviceRequest,
     BindDeviceRequest,
     DeviceSettingRequest,
     GetLatestDeviceDataRequest,
@@ -11,7 +12,7 @@ from .request import (
     TopicRemoteControl,
     TopicScreenshot,
 )
-from .response import GetLatestDeviceDataResponse, LatestDeviceDataRecord
+from .response import DeviceQRCodeInfo, GetLatestDeviceDataResponse, LatestDeviceDataRecord
 
 __all__ = [
     "RobotController",
@@ -19,12 +20,14 @@ __all__ = [
     "TopicDeviceData",
     "TopicScreenshot",
     "TopicRemoteControl",
+    "AddDeviceRequest",
     "GetLatestDeviceDataRequest",
     "SendDeviceCommandRequest",
     "BindDeviceRequest",
     "DeviceSettingRequest",
     "TemperatureSetting",
     "HumiditySetting",
+    "DeviceQRCodeInfo",
     "GetLatestDeviceDataResponse",
     "LatestDeviceDataRecord",
 ]

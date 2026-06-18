@@ -4,7 +4,7 @@
 
     <groupId>cn.boticz</groupId>
     <artifactId>masrobo-rcs-sdk</artifactId>
-<version>0.2.0</version>
+<version>0.2.1</version>
     <packaging>jar</packaging>
     <name>Masrobo RCS SDK</name>
     <description>Masrobo RCS SDK - A Java SDK for interacting with the Masrobo RCS API</description>

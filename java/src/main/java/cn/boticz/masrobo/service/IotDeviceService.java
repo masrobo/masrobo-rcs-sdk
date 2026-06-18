@@ -1,11 +1,13 @@
 package cn.boticz.masrobo.service;
 
 import cn.boticz.masrobo.client.OpenHttpClient;
+import cn.boticz.masrobo.request.AddDeviceRequest;
 import cn.boticz.masrobo.request.BindDeviceRequest;
 import cn.boticz.masrobo.request.DeviceInfoRequest;
 import cn.boticz.masrobo.request.DeviceSettingRequest;
 import cn.boticz.masrobo.request.GetLatestDeviceDataRequest;
 import cn.boticz.masrobo.request.SendDeviceCommandRequest;
+import cn.boticz.masrobo.response.DeviceQRCodeInfo;
 import cn.boticz.masrobo.response.GetLatestDeviceDataResponse;
 import cn.boticz.masrobo.response.IotDeviceInfo;
 import cn.boticz.masrobo.validator.RequestValidator;
@@ -41,6 +43,13 @@ public class IotDeviceService {
         RequestValidator.require(request.getProductName(), "productName");
         RequestValidator.require(request.getTopicName(), "topicName");
         httpClient.post("/iot/device/command", request);
+    }
+
+    public DeviceQRCodeInfo addDevice(AddDeviceRequest request) {
+        RequestValidator.require(request, "request");
+        RequestValidator.require(request.getProjectName(), "projectName");
+        RequestValidator.require(request.getDeviceId(), "deviceId");
+        return httpClient.post("/iot/device/add", request, DeviceQRCodeInfo.class);
     }
 
     public void bindDevice(BindDeviceRequest request) {

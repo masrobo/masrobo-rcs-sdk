@@ -22,6 +22,12 @@ export class IotDeviceService {
     await this.client.request('POST', '/iot/device/command', { body: request });
   }
 
+  async addDevice(request: any = {}) {
+    requireValue(request.project_name, 'project_name');
+    requireValue(request.device_id, 'device_id');
+    return await this.client.request('POST', '/iot/device/add', { body: request }) as { qrcode_url: string };
+  }
+
   async bindDevice(request: any = {}) {
     requireValue(request.device_id, 'device_id');
     await this.client.request('POST', '/iot/device/bind', { body: request });

@@ -2,7 +2,9 @@ package cn.boticz.masrobo.service;
 
 import cn.boticz.masrobo.RobotController;
 import cn.boticz.masrobo.client.Config;
+import cn.boticz.masrobo.request.AddDeviceRequest;
 import cn.boticz.masrobo.request.DeviceInfoRequest;
+import cn.boticz.masrobo.response.DeviceQRCodeInfo;
 import cn.boticz.masrobo.response.IotDeviceInfo;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.BeforeAll;
@@ -62,5 +64,15 @@ class IotDeviceServiceTest {
         System.out.println("设备名称: " + result.getDeviceName());
         System.out.println("产品名称: " + result.getProductName());
         System.out.println("设备状态: " + result.getStatus());
+    }
+
+    @Test
+    void testAddDevice() {
+        // 参考 Python: client.IotDevice.add_device(AddDeviceRequest(project_name=PRODUCT_NAME, device_id=DEVICE_ID))
+        AddDeviceRequest request = new AddDeviceRequest(productName, deviceId);
+        DeviceQRCodeInfo result = service.addDevice(request);
+        assertNotNull(result);
+        assertNotNull(result.getQrcodeUrl());
+        System.out.println("addDevice 调用成功: qrcode_url=" + result.getQrcodeUrl());
     }
 }
