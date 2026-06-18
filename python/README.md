@@ -9,6 +9,7 @@
 - IoT device APIs
   - Get latest device data
   - Send device command
+  - Add device
   - Bind device
   - Update device settings
 
@@ -80,6 +81,20 @@ client.IotDevice.send_device_command(
 from masrobo_rcs_sdk import BindDeviceRequest
 
 client.IotDevice.bind_device(BindDeviceRequest(device_id="device001"))
+```
+
+### Add device
+
+```python
+from masrobo_rcs_sdk import AddDeviceRequest
+
+result = client.IotDevice.add_device(
+    AddDeviceRequest(
+        project_name="demo_product",
+        device_id="device001",
+    )
+)
+print(result.qrcode_url)
 ```
 
 ### Update device settings

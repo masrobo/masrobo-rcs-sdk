@@ -9,6 +9,7 @@
 - IoT device APIs
   - Get latest device data
   - Send device command
+  - Add device
   - Bind device
   - Update device settings
 
@@ -73,6 +74,16 @@ await client.IotDevice.sendDeviceCommand({
 await client.IotDevice.bindDevice({
   device_id: 'device001',
 });
+```
+
+### Add device
+
+```js
+const result = await client.IotDevice.addDevice({
+  project_name: 'demo_product',
+  device_id: 'device001',
+});
+console.log(result.qrcode_url);
 ```
 
 ### Update device settings

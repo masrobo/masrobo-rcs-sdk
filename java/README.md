@@ -9,6 +9,7 @@
 - IoT device APIs
   - Get latest device data
   - Send device command
+  - Add device
   - Bind device
   - Update device settings
 
@@ -63,6 +64,18 @@ client.getIotDevice().sendDeviceCommand(
 
 ```java
 client.getIotDevice().bindDevice(new BindDeviceRequest("device001"));
+```
+
+### Add device
+
+```java
+import cn.boticz.masrobo.request.AddDeviceRequest;
+import cn.boticz.masrobo.response.DeviceQRCodeInfo;
+
+DeviceQRCodeInfo result = client.getIotDevice().addDevice(
+        new AddDeviceRequest("demo_product", "device001")
+);
+System.out.println(result.getQrcodeUrl());
 ```
 
 ### Update device settings
